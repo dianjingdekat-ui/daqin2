@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大秦风云</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: #0a0000;
+      background-image: 
+        radial-gradient(ellipse at top, #1a0a0a 0%, #0d0000 50%, #000 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Noto Serif SC', serif;
+      overflow: hidden;
+    }
+
+    .bg-text {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-text span {
+      position: absolute;
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: clamp(0.8rem, 1.3vw, 1rem);
+      color: rgba(139, 0, 0, 0.45);
+      writing-mode: vertical-rl;
+      letter-spacing: 0.1em;
+      line-height: 1.2;
+    }.floating-text {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-text span {
+  position: absolute;
+  font-family: 'Ma Shan Zheng', cursive;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.2em;
+}
+
+.floating-text span.big {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  text-shadow: 0 0 20px currentColor;
+}
+
+.floating-text span.medium {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  text-shadow: 0 0 15px currentColor;
+}
+
+.floating-text span.red {
+  color: rgba(200, 50, 50, 0.9);
+}
+
+.floating-text span.gold {
+  color: rgba(201, 162, 39, 0.85);
+}
+
+.floating-text span.animate1 {
+  animation: floatA 8s ease-in-out infinite;
+}
+
+.floating-text span.animate2 {
+  animation: floatB 10s ease-in-out infinite;
+}
+
+.floating-text span.animate3 {
+  animation: floatA 6s ease-in-out infinite reverse;
+}@keyframes floatA {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.85;
+  }
+  25% {
+    transform: translateY(-15px) translateX(3px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-5px) translateX(-2px);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(-10px) translateX(2px);
+    opacity: 0.95;
+  }
+}
+
+@keyframes floatB {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.85;
+  }
+  20% {
+    transform: translateY(-10px) translateX(-3px);
+    opacity: 0.9;
+  }
+  40% {
+    transform: translateY(-18px) translateX(2px);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-8px) translateX(-2px);
+    opacity: 0.9;
+  }
+  80% {
+    transform: translateY(-14px) translateX(1px);
+    opacity: 0.95;
+  }
+}
+
+.container {
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 2;
+}h1 {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: #c9a227;
+  text-shadow: 
+    0 0 10px rgba(201, 162, 39, 0.5),
+    0 0 30px rgba(201, 162, 39, 0.3),
+    3px 3px 0 #8b0000;
+  letter-spacing: 0.3em;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #a08050;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  letter-spacing: 0.5em;
+  margin-bottom: 50px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.menu-item {
+  display: block;
+  width: clamp(160px, 40vw, 200px);
+  padding: 15px 30px;
+  background: linear-gradient(135deg, rgba(26,5,5,0.95) 0%, rgba(45,10,10,0.95) 100%);
+  border: 1px solid #c9a227;
+  color: #c9a227;
+  text-decoration: none;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  letter-spacing: 0.2em;
+  transition: all 0.3s ease;
+  position: relative;
+}.menu-item::before,
+.menu-item::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #c9a227;
+  transform: rotate(45deg);
+}
+
+.menu-item::before {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.menu-item::after {
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.menu-item:hover {
+  background: linear-gradient(135deg, #3d0a0a 0%, #5c1515 100%);
+  box-shadow: 
+    0 0 20px rgba(201, 162, 39, 0.3),
+    inset 0 0 20px rgba(139, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.decoration {
+  margin: 30px 0;
+}
+
+.seal {
+  display: inline-block;
+  width: clamp(60px, 12vw, 80px);
+  height: clamp(60px, 12vw, 80px);
+  border: 3px solid #8b0000;
+  color: #8b0000;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: clamp(54px, 11vw, 74px);
+  transform: rotate(-5deg);
+  opacity: 0.8;
+}footer {
+      margin-top: 30px;
+      color: #5a4a3a;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+    }
+
+    .container::before {
+      content: '';
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 1px solid rgba(201, 162, 39, 0.2);
+      pointer-events: none;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-text" id="bgText"></div>
+  <div class="floating-text" id="floatingText"></div>
+
+  <div class="container">
+    <header>
+      <h1>大秦风云</h1>
+      <p class="subtitle">— 战国历史文字游戏 —</p >
+    </header>
+    
+    <nav class="menu">
+      <a href=" " class="menu-item">开始游戏</a >
+      <a href="javascript:void(0)" class="menu-item">游戏介绍</a >
+      <a href="javascript:void(0)" class="menu-item">历史背景</a >
+      <a href="javascript:void(0)" class="menu-item">制作名单</a >
+    </nav>
+    
+    <div class="decoration">
+      <div class="seal">秦</div>
+    </div>
+    
+    <footer>
+      <p>以史为鉴</p >
+    </footer>
+  </div><script>
+  // 小字背景 - 静止铺满
+  const bgTexts = [
+    '治世不一道', '便国不法古', '法者天下之程式', '刑无等级', '有功于前不为损刑',
+    '王者不却众庶', '霸者无敌于天下', '语数日不厌', '孝公既见卫鞅', '鞅去卫适秦',
+    '欲传商君', '公如青山我如松柏', '如君不去寡人恨君', '举国托付', '秦民大悦',
+    '家给人足', '山无盗贼', '民勇于公战', '怯于私斗', '商君治秦',
+    '张仪相秦', '纵横天下', '合纵连横', '司马错伐蜀', '得蜀则得楚',
+    '武王好力', '举鼎绝膑', '寡人欲通三川', '窥周室', '甘茂相秦', '息壤之盟',
+    '宣太后称制', '魏冉专权', '白起为将', '长平之战', '范雎相秦', '远交近攻',
+    '奇货可居', '立子楚', '吕氏春秋', '一字千金', '仪归报未至咸阳而秦惠王卒',
+    '六王毕四海一', '受命于天既寿永昌', '书同文车同轨', '王翦灭楚', '蒙恬北击匈奴',
+    '天下无敌', '大出天下', '与之定变法之令', '行之十年', '道不拾遗',
+    '法不阿贵', '君臣相知', '秦人富强', '刑不上大夫', '赏不遗匹夫',
+    '虽千万人吾往矣', '樗里疾智囊', '商君法', '军功爵', '耕战',
+  ];
+  
+  const bgContainer = document.getElementById('bgText');
+  const cols = 25;
+  const colWidth = 100 / cols;
+  
+  for (let i = 0; i < cols; i++) {
+  const x = 5 + (i * (87 / cols));
+  const textCount = 8 + Math.floor(Math.random() * 4);
+  
+  for (let j = 0; j < textCount; j++) {
+    const span = document.createElement('span');
+    const randomText = bgTexts[Math.floor(Math.random() * bgTexts.length)];
+    span.textContent = randomText;
+    
+    let finalX = x + (Math.random() - 0.5) * 2;
+    let finalY = j * (85 / textCount) + 3 + Math.random() * 3;
+    
+    span.style.left = finalX + '%';
+    span.style.top = finalY + '%';
+    bgContainer.appendChild(span);
+  }
+}// 大字和中字 - 会动
+    const floatingData = [
+      // 秦孝公时期 - 左上
+      { text: '嬴渠梁', x: 5, y: 5, color: 'gold', anim: 1, size: 'big' },
+      { text: '卫鞅', x: 16, y: 10, color: 'red', anim: 2, size: 'big' },
+      { text: '变法', x: 9, y: 18, color: 'gold', anim: 3, size: 'medium' },
+
+      // 秦惠文王时期 - 右上
+      { text: '嬴驷', x: 85, y: 6, color: 'red', anim: 1, size: 'big' },
+      { text: '张仪', x: 74, y: 12, color: 'gold', anim: 2, size: 'big' },
+      { text: '连横', x: 80, y: 20, color: 'red', anim: 3, size: 'medium' },
+      { text: '司马错', x: 70, y: 18, color: 'gold', anim: 1, size: 'medium' },
+
+      // 秦武王时期 - 左中上
+      { text: '嬴荡', x: 6, y: 28, color: 'red', anim: 2, size: 'big' },
+      { text: '甘茂', x: 15, y: 34, color: 'gold', anim: 3, size: 'big' },
+
+      // 秦昭襄王时期 - 右中
+      { text: '嬴稷', x: 86, y: 30, color: 'gold', anim: 1, size: 'big' },
+      { text: '白起', x: 75, y: 36, color: 'red', anim: 2, size: 'big' },
+      { text: '范雎', x: 82, y: 44, color: 'gold', anim: 3, size: 'medium' },
+      { text: '君臣相知', x: 72, y: 50, color: 'red', anim: 1, size: 'medium' },
+
+      // 秦孝文王庄襄王时期 - 左中下
+      { text: '嬴子楚', x: 7, y: 48, color: 'gold', anim: 2, size: 'big' },
+      { text: '吕不韦', x: 17, y: 54, color: 'red', anim: 3, size: 'big' },
+      { text: '耕战', x: 10, y: 62, color: 'gold', anim: 1, size: 'medium' },
+
+      // 秦始皇时期 - 右下
+      { text: '嬴政', x: 84, y: 58, color: 'red', anim: 2, size: 'big' },
+      { text: '李斯', x: 73, y: 64, color: 'gold', anim: 3, size: 'big' },
+      { text: '王翦', x: 81, y: 72, color: 'red', anim: 1, size: 'medium' },
+      { text: '蒙恬', x: 71, y: 78, color: 'gold', anim: 2, size: 'medium' },
+      { text: '统一', x: 78, y: 85, color: 'red', anim: 3, size: 'medium' },
+
+      // 补充 - 左下
+      { text: '法不阿贵', x: 8, y: 72, color: 'red', anim: 1, size: 'medium' },
+      { text: '秦人富强', x: 18, y: 80, color: 'gold', anim: 2, size: 'medium' },
+      { text: '嬴柱', x: 12, y: 42, color: 'red', anim: 3, size: 'medium' },
+    ];
+
+    const floatingContainer = document.getElementById('floatingText');
+    const screenWidth = window.innerWidth;
+    
+    floatingData.forEach(item => {
+      const span = document.createElement('span');
+      span.textContent = item.text;
+      span.className = item.color + ' ' + item.size + ' animate' + item.anim;
+      
+      let finalX = item.x;
+      
+      if (screenWidth < 500) {
+        if (item.x < 30) {
+          finalX = 3;
+        } else if (item.x > 70) {
+          finalX = 88;
+        }
+      }
+      
+      span.style.left = finalX + '%';
+      span.style.top = item.y + '%';
+      floatingContainer.appendChild(span);
+    });
+  </script>
+</body>
+</html>
