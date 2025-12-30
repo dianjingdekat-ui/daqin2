@@ -301,45 +301,45 @@
     span.style.top = finalY + '%';
     bgContainer.appendChild(span);
   }
-}// 大字和中字 - 会动
+  }// 大字和中字 - 会动
     const floatingData = [
       // 秦孝公时期 - 左上
-      { text: '嬴渠梁', x: 5, y: 5, color: 'gold', anim: 1, size: 'big' },
+      { text: '嬴渠梁', x: 8, y: 5, color: 'gold', anim: 1, size: 'big' },
       { text: '卫鞅', x: 16, y: 10, color: 'red', anim: 2, size: 'big' },
-      { text: '变法', x: 9, y: 18, color: 'gold', anim: 3, size: 'medium' },
+      { text: '变法', x: 15, y: 22, color: 'gold', anim: 3, size: 'medium' },
 
       // 秦惠文王时期 - 右上
       { text: '嬴驷', x: 85, y: 6, color: 'red', anim: 1, size: 'big' },
-      { text: '张仪', x: 74, y: 12, color: 'gold', anim: 2, size: 'big' },
+      { text: '张仪', x: 78, y: 10, color: 'gold', anim: 2, size: 'big' },
       { text: '连横', x: 80, y: 20, color: 'red', anim: 3, size: 'medium' },
       { text: '司马错', x: 70, y: 18, color: 'gold', anim: 1, size: 'medium' },
 
       // 秦武王时期 - 左中上
-      { text: '嬴荡', x: 6, y: 28, color: 'red', anim: 2, size: 'big' },
+      { text: '嬴荡', x: 8, y: 28, color: 'red', anim: 2, size: 'big' },
       { text: '甘茂', x: 15, y: 34, color: 'gold', anim: 3, size: 'big' },
 
       // 秦昭襄王时期 - 右中
       { text: '嬴稷', x: 86, y: 30, color: 'gold', anim: 1, size: 'big' },
       { text: '白起', x: 75, y: 36, color: 'red', anim: 2, size: 'big' },
       { text: '范雎', x: 82, y: 44, color: 'gold', anim: 3, size: 'medium' },
-      { text: '君臣相知', x: 72, y: 50, color: 'red', anim: 1, size: 'medium' },
+      { text: '君臣相知', x: 72, y: 49, color: 'red', anim: 1, size: 'medium' },
 
       // 秦孝文王庄襄王时期 - 左中下
-      { text: '嬴子楚', x: 7, y: 48, color: 'gold', anim: 2, size: 'big' },
+      { text: '嬴子楚', x: 8, y: 50, color: 'gold', anim: 2, size: 'big' },
       { text: '吕不韦', x: 17, y: 54, color: 'red', anim: 3, size: 'big' },
-      { text: '耕战', x: 10, y: 62, color: 'gold', anim: 1, size: 'medium' },
+      { text: '耕战', x: 30, y: 70, color: 'gold', anim: 1, size: 'medium' },
 
       // 秦始皇时期 - 右下
-      { text: '嬴政', x: 84, y: 58, color: 'red', anim: 2, size: 'big' },
+      { text: '嬴政', x: 82, y: 58, color: 'red', anim: 2, size: 'big' },
       { text: '李斯', x: 73, y: 64, color: 'gold', anim: 3, size: 'big' },
       { text: '王翦', x: 81, y: 72, color: 'red', anim: 1, size: 'medium' },
       { text: '蒙恬', x: 71, y: 78, color: 'gold', anim: 2, size: 'medium' },
       { text: '统一', x: 78, y: 85, color: 'red', anim: 3, size: 'medium' },
 
       // 补充 - 左下
-      { text: '法不阿贵', x: 8, y: 72, color: 'red', anim: 1, size: 'medium' },
-      { text: '秦人富强', x: 18, y: 80, color: 'gold', anim: 2, size: 'medium' },
-      { text: '嬴柱', x: 12, y: 42, color: 'red', anim: 3, size: 'medium' },
+      { text: '法不阿贵', x: 9, y: 72, color: 'red', anim: 1, size: 'medium' },
+      { text: '秦人富强', x: 26, y: 80, color: 'gold', anim: 2, size: 'medium' },
+      { text: '嬴柱', x: 10, y: 42, color: 'red', anim: 3, size: 'medium' },
     ];
 
     const floatingContainer = document.getElementById('floatingText');
@@ -352,11 +352,27 @@
       
       let finalX = item.x;
       
+      // 手机适配（宽度小于 500px）
       if (screenWidth < 500) {
+        // 左边的分成3列
         if (item.x < 30) {
-          finalX = 3;
-        } else if (item.x > 70) {
-          finalX = 88;
+          if (item.x < 8) {
+            finalX = 2;
+          } else if (item.x < 14) {
+            finalX = 10;
+          } else {
+            finalX = 18;
+          }
+        } 
+        // 右边的分成3列
+        else if (item.x > 65) {
+          if (item.x > 82) {
+            finalX = 90;
+          } else if (item.x > 76) {
+            finalX = 82;
+          } else {
+            finalX = 74;
+          }
         }
       }
       
